@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title>Display employee</title>
+</head>
+<body>
+    <h1>This is the employee you just added </h1>
+    <!--<p th:text="'Id: ' + ${newEmployee.ID}" />-->
+    <p th:text="${newEmployee.name}" />
+    <p th:text="${newEmployee.email}" />
+    <p>Company</p>
+    <p th:text="${newEmployee.company}" />
+    <p th:text="'Start Date: ' + ${newEmployee.startDate}" />
+    <p th:text="'End Date: ' + ${newEmployee.endDate}" />
+    <p><a href="/addemployee">Add another Employee to the database</a></p>
+
+</body>
+</html>
