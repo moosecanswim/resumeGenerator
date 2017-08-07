@@ -6,6 +6,7 @@
 </head>
 <body>
     <h1>Add an Employee</h1>
+    <p th:text = "${message}">This is a placeholder if ther is no error message</p>
 
     <form action = "#" th:action="@{/addemployee}" th:object="${newEmployee}" method = "post">
 
@@ -24,5 +25,7 @@
         <p><input type = "submit" value = "Add Employee"/> <input type="reset" value="Clear Form" /></p>
 
     </form>
+    <p><a href = "/">Go Back to Home Page</a></p>
+    <p><a href="/showallemployees">Show list of all staff</a></p>
 </body>
 </html>

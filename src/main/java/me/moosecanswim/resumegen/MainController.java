@@ -29,8 +29,10 @@ public class MainController {
         return "addemployee";
     }
     @PostMapping("/addemployee")
-    public String addemployee2(@Valid @ModelAttribute("newEmployee") Employee thisGuy, BindingResult bindingResult){
+    public String addemployee2(@Valid @ModelAttribute("newEmployee") Employee thisGuy, BindingResult bindingResult, Model toSend){
         if(bindingResult.hasErrors()){
+            String messageToSend = "There was an issue with the employee added.  Please try again";
+            toSend.addAttribute("message",messageToSend);
             System.out.println("**Here is an issue**"  + bindingResult.toString());
             return "addemployee";
         }

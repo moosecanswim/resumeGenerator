@@ -7,15 +7,17 @@
     <body>
         <h1>Show all Employees</h1>
 
-        <table class="table table-striped">
+        <table class="table table-striped" style = "width:100%">
             <tr>
-                <th>Id                </th>
-                <th>Name              </th>
-                <th>Email             </th>
-                <th>Company           </th>
-                <th>Start Date        </th>
-                <th>End Date          </th>
-                <th>Days Worked       </th>
+
+                <th align = "left" scope="col">Id </th>
+                <th align = "left" scope = "col">Name</th>
+                <th align = "left" scope = "col">Email</th>
+                <th align = "left" scope = "col" > Company</th>
+                <th align = "left" scope = "col">Start Date</th>
+                <th align = "left" scope = "col">End Date</th>
+                <th align = "left" scope = "col">Days Worked</th>
+
             </tr>
             <tr th:each="Employee : ${listOfEmployee}">
 
