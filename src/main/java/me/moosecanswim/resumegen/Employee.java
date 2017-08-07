@@ -7,7 +7,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 @Entity
 public class Employee {
@@ -23,6 +30,8 @@ public class Employee {
     private String startDate;
     @Nullable
     private String endDate;
+
+    private int daysWorking;
 
 
 
@@ -48,7 +57,18 @@ public class Employee {
     }
 
     public void setStartDate(String startDate) {
-        this.startDate = startDate;
+        SimpleDateFormat dateformat2 = new SimpleDateFormat("MM/dd/yyyy");
+        String output = null;
+        try {
+            Date newDate = dateformat2.parse(startDate);
+
+            System.out.println(newDate);
+            output= dateformat2.format(newDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        this.startDate = output;
     }
 
     public String getEndDate() {
@@ -57,14 +77,18 @@ public class Employee {
 
     public void setEndDate(String endDate) {
 
-        if(String.isEmpty(endDate)){
-            Date today = new Date();
-            today.setHours(0);
-            this.endDate=today;
+        if(endDate.isEmpty()){
+            DateTimeFormatter dtf =
+                    DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.US);
+            LocalDateTime today = LocalDateTime.now();
+            String output = dtf.format(today);
+
+            this.endDate=output;
         }
         else {
             this.endDate = endDate;
         }
+       //this.endDate = endDate;
     }
 
     public String getCompany() {
@@ -83,4 +107,6 @@ public class Employee {
     public void setID(long ID) {
         this.ID = ID;
     }
+
+
 }
