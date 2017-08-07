@@ -20,9 +20,9 @@ public class Employee {
     private String company;
     private String email;
     @NotNull(message ="you need to have a start date")
-    private Date startDate;
+    private String startDate;
     @Nullable
-    private Date endDate;
+    private String endDate;
 
 
 
@@ -43,20 +43,28 @@ public class Employee {
         this.email = email;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setEndDate(String endDate) {
+
+        if(String.isEmpty(endDate)){
+            Date today = new Date();
+            today.setHours(0);
+            this.endDate=today;
+        }
+        else {
+            this.endDate = endDate;
+        }
     }
 
     public String getCompany() {
