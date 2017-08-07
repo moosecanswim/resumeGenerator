@@ -34,9 +34,17 @@ public class MainController {
             System.out.println("**Here is an issue**"  + bindingResult.toString());
             return "addemployee";
         }
-        System.out.println("**you got there**");
+        thisGuy.setDaysWorking(thisGuy.getStartDate(),thisGuy.getEndDate());
         employeeRepository.save(thisGuy);
         return"displayemployee";
+    }
+    @GetMapping("/showallemployees")
+    public String showAll(Model model){
+        Iterable<Employee> employeeList = employeeRepository.findAll();
+        model.addAttribute("listOfEmployee",employeeList);
+
+
+        return "showallemployees";
     }
 
 }

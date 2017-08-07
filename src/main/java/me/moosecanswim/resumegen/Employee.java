@@ -9,10 +9,8 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -78,8 +76,7 @@ public class Employee {
     public void setEndDate(String endDate) {
 
         if(endDate.isEmpty()){
-            DateTimeFormatter dtf =
-                    DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.US);
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.US);
             LocalDateTime today = LocalDateTime.now();
             String output = dtf.format(today);
 
@@ -109,4 +106,34 @@ public class Employee {
     }
 
 
+    public int getDaysWorking() {
+        return daysWorking;
+    }
+
+    public void setDaysWorking(String inStart, String inEnd) {
+        Date start = stringToDate(inStart);
+        Date end = stringToDate(inEnd);
+        int output = 0;
+        output =  daysBetween(start,end);
+
+        System.out.println("worked for " + output +" days");
+
+
+        this.daysWorking = output;
+    }
+    public static Date stringToDate(String input){
+        SimpleDateFormat dtf = new SimpleDateFormat("MM/dd/yyyy");
+        Date output = new Date();
+        try {
+            output = dtf.parse(input);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return output;
+    }
+    public int daysBetween(Date d1, Date d2){
+        return (int)( (d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+    }
 }

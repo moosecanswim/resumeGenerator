@@ -13,8 +13,9 @@
     <p th:text="${newEmployee.company}" />
     <p th:text="'Start Date: ' + ${newEmployee.startDate}" />
     <p th:text="'End Date: ' + ${newEmployee.endDate}" />
-    <p>Employee has worked for:</p>
+    <p th:text="'Employee has worked for: ' +${newEmployee.daysWorking}"/>
     <p><a href="/addemployee">Add another Employee to the database</a></p>
+    <p><a href="/showallemployees">Show all the employees in the database</a></p>
 
 </body>
 </html>
